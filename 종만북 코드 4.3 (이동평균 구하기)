@@ -1,0 +1,22 @@
+//2022-12-12 code 4.3 to C
+//크기가 12인 실수 배열 A가 주어질 때 주어질 때 마다 평균값을 구한다.
+#include <stdio.h>
+
+int main()
+{
+    int A[12]={5, 4, 3, 5, 3, 5, 6, 4, 6, 5, 3, 5};
+    
+    for(int i=0; i<12; i++){
+        double sum=0;
+        double average=0;
+        for (int j=0; j<=i; j++){
+            sum+=A[j];
+        }
+        
+        average=sum/(i+1);
+        
+        printf("%d개월간 이동평균 %f\n", i+1, average);
+    }//A[i]까지의 이동 평균값을 구하자
+
+    return 0;
+}//처음 반복은 12번 2번째는 i개의 측정치가 주어졌을때 그만큼 반복 따라서 12i 가 수행시간
