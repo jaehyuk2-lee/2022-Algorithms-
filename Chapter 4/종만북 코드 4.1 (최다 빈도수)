@@ -1,0 +1,41 @@
+//2022-12-14 code 4.1 to C
+//만약 최다 빈도수가 2개 이상이면 아무거나 반환
+#include <stdio.h>
+
+int main()
+{
+    int size;
+    printf("크기 입력: ");
+    scanf("%d", &size);
+    int a[size];
+    
+    for(int i=0; i<size; i++){
+        int input;
+        printf("%d번 ", i+1);
+        scanf("%d", &input);
+        a[i]=input;
+    }
+    printf("a[%d] = { ", size);
+    for(int i=0; i<size; i++){
+        printf("%d ", a[i]);
+    }
+    printf("}\n");
+    
+    int standard, count, major;
+    standard=-1;
+    for(int i=0; i<size; i++){
+        count=0;
+        for(int j=0; j<size; j++){
+            if(a[i]==a[j]){
+                count++;
+            }
+            if(count>standard){
+                standard=count;
+                major=i;
+            }
+        }
+    }
+    printf("최다 빈도수 %d", a[major]);
+
+    return 0;
+} //알고리즘의 수행 시간은 반복문의 반복횟수 이므로 이 알고리즘의 수행시간은 size^2+2size이다. 
