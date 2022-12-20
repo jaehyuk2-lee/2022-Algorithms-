@@ -1,0 +1,35 @@
+//2022-12-20 code 6.1 to C
+//n개의 원소중 네개를 고르는 모든 경우의 출력
+
+#include <stdio.h>
+
+int main()
+{
+    int size;
+    printf("크기 입력: ");
+    scanf("%d", &size);
+    
+    int ary[size];
+    for(int i=0; i<size; i++){
+        ary[i]=i;
+        printf("%d ", ary[i]);
+    }//배열 출력
+    printf("\n\n");
+    
+    for(int i=0; i<size; i++){
+        for (int j=i+1; j<size; j++){
+            for(int k=j+1; k<size; k++){
+                for(int l=k+1; l<size; l++){
+                    printf("(%d %d %d %d) ", i,j,k,l);
+                }
+            }
+        }
+        printf("\n");
+    }
+    /*가능한 모든 경우를 찾아서 출력,
+      반복하는 숫자가 크기를 넘어가면
+      배열 범위를 벗어나기 때문에 반복 X
+      이전 숫자가 크기를 벗어나면 당연히 다음 것도 크기를 벗어남*/ 
+    
+    return 0;
+}
