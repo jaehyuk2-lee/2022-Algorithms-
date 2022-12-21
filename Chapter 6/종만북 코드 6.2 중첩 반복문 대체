@@ -49,6 +49,7 @@ void Combination(int *ary, int *chosen, int n, int r, int c){
     if(n<r){
         return;
     }//총 개수 보다 많은 선택을 할 수는 없다
+     //더 이상 제외할 수 없으니다른 경우 진행
     
     else{
         chosen[r-1]=ary[n-1];//제일 마지막에 들어올 수 저장
