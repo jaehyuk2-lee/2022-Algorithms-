@@ -1,47 +1,64 @@
 //2022-12-20 code 6.2 to C
-//n개의 원소중 m개를 고르는 모든 경우의 출력 ~> 조합
-
+//n개의 원소중 r개를 고르는 모든 경우의 출력 ~> 조합
+//배열에 입력한 수 만큼 할당 받아야하므로 동적할당 사용
 #include <stdio.h>
+#include <stdlib.h>
 
-void Comb(int A, int B, int C){
-    //A: 원소개수, B: 남은 반복 수, C: 고르는 원소개수
-    int ary[A]:
-    for(int i=0; i<A; i++){
-        ary[i]=i;
-    }//배열 설정
-    
-    int a[A];
-    
-    if(B==0){
-        for(int i=0; i<C; i++){
-            printf("%d ",a[i]);
-        }
-        printf("\n");
-    }
-    else if (A<B){
-        printf("수열보다 넓은 범위\n");
-    }
-    else{
-        a[A-1]=ary[A-1];//하나 선택 후 남은 것 중에 하나 선택
-        Comb(A-1,B-1,C);
-        Comb(A-1,B,C);
-    }
-}
+void Combination(int *ary, int *chosen, int n, int r, int c);
+void print(int *chosen, int c);
 
-int main()
-{
-    int n;
-    printf("크기 입력: ");
+int main(){
+    int n,r,c;
+    printf("원소의 개수 입력: ");
     scanf("%d", &n);
-    //전체 크기 설정
+    printf("고를 개수 입력: ");
+    scanf("%d", &r);
     
-    int m;
-    printf("출력 범위 입력: ");
-    scanf("%d", &m);
-    //출력 범위 설정
+    c=r;//현재 인덱스의 값
     
-    Comb(n,m,m);
+    int *ary;
+    ary=(int*)malloc(n*sizeof(int));
+    //n개의 배열 할당
     
-    return 0;
+    for(int i=0; i<n; i++){
+        ary[i]=i;
+    }//배열 입력
+    
+    int *chosen;
+    chosen=(int*)malloc(r*sizeof(int));
+    //r개를 선택할 배열 할당;
+    
+    Combination(ary, chosen, n, r, c);
+    free(ary);
+    free(chosen); //동적할당 해제
 }
+
+void print(int *chosen, int c){
+    for(int i=0; i<c; i++){
+        printf("%d ", chosen[i]);
+    }
+    printf("\n");
+}
+
+void Combination(int *ary, int *chosen, int n, int r, int c){
+    if(r==0){
+        print(chosen, c);
+        return;
+    }//r==0 이면 모두 선택 했기 때문에 출력
+    
+    if(n<r){
+        return;
+    }//총 개수 보다 많은 선택을 할 수는 없다
+    
+    else{
+        chosen[r-1]=ary[n-1];//제일 마지막에 들어올 수 저장
+        Combination(ary, chosen, n-1, r-1, c);
+        //n개 중에서 한개를 뽑고 다음 순서로 실행
+        Combination(ary, chosen, n-1, r, c);
+        //n개 중에서 r번째를 제외하고 다음 순서로 진행
+        //총 r개 뽑는 것은 동일
+    }//else if(n>=r)
+}
+
+
 //https://iyk2h.tistory.com/82
