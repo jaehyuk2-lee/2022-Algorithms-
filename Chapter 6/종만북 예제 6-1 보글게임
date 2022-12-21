@@ -1,0 +1,17 @@
+//2022-12-21 code 6.3 to c
+//인접한 글자를 연결해 단어를 만들수 있는가
+
+#include <stdio.h>
+
+int main(){
+    char square[][5]={{"URLPM"},{"XPRET"},
+    {"GIAET"},{"XTNZY"},
+    {"XOQRS"}};
+    
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            printf("%c ", square[i][j]);
+        }
+        printf("\n");
+    } //격자
+}
