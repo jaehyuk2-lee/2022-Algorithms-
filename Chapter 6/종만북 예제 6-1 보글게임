@@ -17,6 +17,7 @@ void next(int square[][5], char word[6], int i, int j, int count){
         if(square[nextX][nextY]==word[count]){
             if(count==6){
             printf("%s 찾을 수 있음", word);
+            break;
         }
         else{count++;
         next(square, word,nextX,nextY,count);
