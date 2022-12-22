@@ -3,6 +3,26 @@
 
 #include <stdio.h>
 
+void next(int square[][5], char word[6], int i, int j, int count){
+    int dx[8]={-1,-1,-1,0,1,1,1,0};
+    int dy[8]={-1,0,1,1,1,0,-1,-1};
+    
+    int nextX, nextY;
+    for(int dir=0; dir<8; dir++){
+        nextX=i+dx[dir];
+        nextY=j+dy[dir];
+    }
+    
+    if(square[nextX][nextY]==word[count]){
+        if(count==6){
+            printf("%s 찾을 수 있음", word);
+        }
+        else{count++;
+        next(square, word,nextX,nextY,count);
+        }
+    }
+}
+
 int main(){
     char square[][5]={{"URLPM"},{"XPRET"},
     {"GIAET"},{"XTNZY"},
@@ -14,4 +34,19 @@ int main(){
         }
         printf("\n");
     } //격자
+    
+    char word[6];
+    printf("단어입력(대문자): ");
+    scanf("%s", word);
+    
+    int count=0;
+    
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            if(square[i][j]==word[count]){
+                count++;
+                next(square,word,i,j,count);
+            }
+        }
+    }
 }
