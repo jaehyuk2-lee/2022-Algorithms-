@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-void next(int square[][5], char word[6], int i, int j, int count){
+void next(int *square, char *word, int i, int j, int count){
     int dx[8]={-1,-1,-1,0,1,1,1,0};
     int dy[8]={-1,0,1,1,1,0,-1,-1};
     
@@ -11,15 +11,17 @@ void next(int square[][5], char word[6], int i, int j, int count){
     for(int dir=0; dir<8; dir++){
         nextX=i+dx[dir];
         nextY=j+dy[dir];
-    }
-    
-    if(square[nextX][nextY]==word[count]){
-        if(count==6){
+        if(nextX<0)continue;
+        if(nextY<0)continue;
+        
+        if(square[nextX][nextY]==word[count]){
+            if(count==6){
             printf("%s 찾을 수 있음", word);
         }
         else{count++;
         next(square, word,nextX,nextY,count);
         }
+    }
     }
 }
 
