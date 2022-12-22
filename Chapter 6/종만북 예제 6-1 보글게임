@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-void next(int *square, char *word, int i, int j, int count){
+void next(int square[][5], char word[6], int i, int j, int count){
     int dx[8]={-1,-1,-1,0,1,1,1,0};
     int dy[8]={-1,0,1,1,1,0,-1,-1};
     
